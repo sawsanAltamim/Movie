@@ -132,7 +132,7 @@ public class TicketService {
         customerRepostory.save(customer);
 
     }
-    /*
+
     public void returnTicket(Integer user_id ,Integer ticket_id, Integer customer_id){
         Ticket ticket = ticketRepository.findTicketById(ticket_id);
         if(ticket == null){
@@ -154,22 +154,16 @@ public class TicketService {
         double ticketCost = ticket.getTicketCost();
         boolean hasDiscountCoupon = customer.getDiscountCoupon();
 
-        if (hasDiscountCoupon) { // if true
-            ticketCost *= 0.9; // Apply 10% discount
-            // Add the cost of the ticket to the user's balance
+        if (hasDiscountCoupon == true) {
+            ticketCost *= 0.9;
             customer.setBalance(customer.getBalance() + ticketCost);
             customerRepostory.save(customer);
-        } else { // if false
-            // Add the cost of the ticket to the user's balance
+        } else {
             customer.setBalance(customer.getBalance() + ticket.getTicketCost());
             customerRepostory.save(customer);
         }
-        // ِAdd the ticket of the number of tickets available
         ticket.setNumberOfTicketsAvailable(ticket.getNumberOfTicketsAvailable() + 1);
         ticketRepository.save(ticket);
 
-        ticketRepository.delete(ticket);
-        customerRepostory.delete(customer);
-
-    }*/
+    }
 }

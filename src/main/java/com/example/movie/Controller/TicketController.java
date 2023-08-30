@@ -45,4 +45,10 @@ public class TicketController {
         ticketService.bookTicket(user.getId(),customer_id,ticket_id);
         return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("Ticket booked successfully"));
     }
+
+    @GetMapping("/return/{ticket_id}/{customer_id}")
+    public ResponseEntity returnTicket(@AuthenticationPrincipal User user,@PathVariable Integer ticket_id,@PathVariable Integer customer_id){
+        ticketService.returnTicket(user.getId(),ticket_id,customer_id);
+        return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("Ticket return successfully"));
+    }
 }
