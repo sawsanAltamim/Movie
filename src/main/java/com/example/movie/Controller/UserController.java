@@ -25,11 +25,11 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("user registered"));
     }
 
-    /*@PostMapping("/admin")
+    @PostMapping("/admin")
     public ResponseEntity registerAdmin(@RequestBody User user){
         userService.registerAdmin(user);
         return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("admin registered"));
-    }*/
+    }
 
     @GetMapping("/logout")
     public ResponseEntity logout(){

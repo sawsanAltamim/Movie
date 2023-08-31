@@ -22,11 +22,11 @@ public class UserService {
         userRepostory.save(user);
     }
 
-    /*public void registerAdmin (User user){
+    public void registerAdmin (User user){
         String hash = new BCryptPasswordEncoder().encode(user.getPassword());
         user.setPassword(hash);
         user.setRole("ADMIN");
 
         userRepostory.save(user);
-    }*/
+    }
 }
