@@ -80,4 +80,14 @@ public class MovieControlletTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
+
+    @Test
+    public void GetMoviesByDirectorTest() throws Exception {
+        Mockito.when(movieService.getMoviesByDirector(userAdmin.getId(), "Director 1")).thenReturn(movies);
+        mockMvc.perform(get("/api/v1/movie/get-by-director/{directorName}", "Director 1")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(1)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].director").value("Director 1"));
+    }
 }

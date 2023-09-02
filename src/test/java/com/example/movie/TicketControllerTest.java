@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.List;
+
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(value = TicketController.class, excludeAutoConfiguration = {SecurityAutoConfiguration.class})
@@ -38,7 +38,7 @@ public class TicketControllerTest {
 
     @BeforeEach
     void setUp() {
-        user = new User(1, "user", "password", "USER", null);
+        user = new User(1, "s1uun", "s12345", "CUSTOMER", null);
         ticket1 = new Ticket(1, 5, LocalDate.of(2023,12,12), LocalTime.of(15, 0), 50.0, null, null);
         ticket2 = new Ticket(2, 3, LocalDate.of(2022,12,20), LocalTime.of(18, 30), 20.0, null, null);
     }
