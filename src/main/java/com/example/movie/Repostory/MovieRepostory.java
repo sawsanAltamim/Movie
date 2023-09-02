@@ -9,4 +9,8 @@ import java.util.List;
 @Repository
 public interface MovieRepostory extends JpaRepository<Movie, Integer> {
     Movie findMovieById(Integer id);
+
+    //List<Movie> findByDirectorAndUser(Integer adminId, String directorName);
+
+    List<Movie> findByDirector(String directorName);
 }

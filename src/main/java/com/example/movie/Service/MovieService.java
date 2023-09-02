@@ -68,4 +68,16 @@ public class MovieService {
         }
         movieRepository.delete(movie);
     }
+
+    public List<Movie> getMoviesByDirector(Integer admin_id, String directorName) {
+        User user = userRepostory.findUserById(admin_id);
+        if (user == null) {
+            throw new ApiException("Admin not found");
+        }
+        if (!user.getRole().equals("ADMIN")) {
+            throw new ApiException("Access denied");
+        }
+
+        return movieRepository.findByDirector(directorName);
+    }
 }

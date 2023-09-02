@@ -45,6 +45,7 @@ public class Movie {
     @Max(value = 10)
     private Double movieEvaluation;
 
+
     @OneToMany(mappedBy = "movie")
     private List<Ticket> tickets;
 
