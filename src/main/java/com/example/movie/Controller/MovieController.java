@@ -4,6 +4,7 @@ import com.example.movie.Api.ApiResponse;
 import com.example.movie.Service.MovieService;
 import com.example.movie.Table.Movie;
 import com.example.movie.Table.User;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.http.HttpStatus;
@@ -27,13 +28,13 @@ public class MovieController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity addMovie(@AuthenticationPrincipal User user, @RequestBody Movie movie){
+    public ResponseEntity addMovie(@AuthenticationPrincipal User user, @RequestBody @Valid Movie movie){
         movieService.addMovie(user.getId(), movie);
         return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("Movie added"));
     }
 
     @PutMapping("/update/{movie_id}")
-    public ResponseEntity updateMovie(@AuthenticationPrincipal User user, @PathVariable Integer movie_id, @RequestBody Movie movie){
+    public ResponseEntity updateMovie(@AuthenticationPrincipal User user, @PathVariable Integer movie_id, @RequestBody @Valid Movie movie){
         movieService.updateMovie(user.getId(), movie_id, movie);
         return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("Movie update"));
     }

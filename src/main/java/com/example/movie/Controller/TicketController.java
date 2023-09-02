@@ -4,6 +4,7 @@ import com.example.movie.Api.ApiResponse;
 import com.example.movie.Service.TicketService;
 import com.example.movie.Table.Ticket;
 import com.example.movie.Table.User;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,12 +25,12 @@ public class TicketController {
     }
 
     @PostMapping("/add/{movie_id}")
-    public ResponseEntity addTicket(@AuthenticationPrincipal User user ,@PathVariable Integer movie_id,@RequestBody Ticket ticket) {
+    public ResponseEntity addTicket(@AuthenticationPrincipal User user ,@PathVariable Integer movie_id,@RequestBody @Valid Ticket ticket) {
         ticketService.addTicketToMovie(user.getId(),movie_id, ticket);
         return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("Ticket added"));
     }
     @PutMapping("/update/{ticketId}")
-    public ResponseEntity updateTicket(@AuthenticationPrincipal User user,@PathVariable Integer ticketId, @RequestBody Ticket updatedTicket) {
+    public ResponseEntity updateTicket(@AuthenticationPrincipal User user,@PathVariable Integer ticketId, @RequestBody @Valid Ticket updatedTicket) {
         ticketService.updateTicket(user.getId(),ticketId, updatedTicket);
         return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("Ticket updated"));
     }

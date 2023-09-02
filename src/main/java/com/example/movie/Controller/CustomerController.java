@@ -5,6 +5,7 @@ import com.example.movie.DTO.UserDTO;
 import com.example.movie.Service.CustomerService;
 import com.example.movie.Service.UserService;
 import com.example.movie.Table.User;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,13 +32,13 @@ public class CustomerController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity addCustomer(@AuthenticationPrincipal User user , @RequestBody UserDTO userDTO) {
+    public ResponseEntity addCustomer(@AuthenticationPrincipal User user , @RequestBody @Valid UserDTO userDTO) {
         customerService.addCustomer(user.getId(), userDTO);
         return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("Customer added"));
     }
 
     @PutMapping("/update/{customer_id}")
-    public ResponseEntity updateCustomer( @AuthenticationPrincipal User user ,@PathVariable Integer customer_id, @RequestBody UserDTO userDTO) {
+    public ResponseEntity updateCustomer( @AuthenticationPrincipal User user ,@PathVariable Integer customer_id, @RequestBody @Valid UserDTO userDTO) {
         customerService.updateCustomer(user.getId(), customer_id, userDTO);
         return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("Customer updated"));
     }

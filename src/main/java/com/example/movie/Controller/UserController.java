@@ -3,6 +3,7 @@ package com.example.movie.Controller;
 import com.example.movie.Api.ApiResponse;
 import com.example.movie.Service.UserService;
 import com.example.movie.Table.User;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,13 +21,13 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody User user){
+    public ResponseEntity register(@RequestBody @Valid User user){
         userService.register(user);
         return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("user registered"));
     }
 
     @PostMapping("/admin")
-    public ResponseEntity registerAdmin(@RequestBody User user){
+    public ResponseEntity registerAdmin(@RequestBody @Valid User user){
         userService.registerAdmin(user);
         return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("admin registered"));
     }
